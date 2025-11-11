@@ -30,25 +30,25 @@ import { Input } from "../ui/input";
 import { saveSchedule } from "@/app/server/actions/schedule";
 
 type Availability = {
-  startTime: string
-  endTime: string
-  dayOfWeek: (typeof DAYS_OF_WEEK_IN_ORDER)[number]
+  startTime: string;
+  endTime: string;
+  dayOfWeek: (typeof DAYS_OF_WEEK_IN_ORDER)[number];
 };
 
 export function ScheduleForm({
   schedule,
 }: {
-  schedule: {
+  schedule?: {
     timezone: string;
-    availability: Availability[];
-  };
+    availabilities: Availability[];
+  }
 }) {
   const form = useForm<z.infer<typeof scheduleEventSchema>>({
     resolver: zodResolver(scheduleEventSchema),
     defaultValues: {
       timezone:
         schedule?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
-      availabilites: schedule?.availability.toSorted((a, b) => {
+      availabilites: schedule?.availabilities.toSorted((a, b) => {
         return timeToFloat(a.startTime) - timeToFloat(b.startTime);
       }),
     },
@@ -204,23 +204,20 @@ export function ScheduleForm({
                       {/* Show field-level validation messages */}
                       <FormMessage>
                         {
-                          form.formState.errors.availabilites?.at?.(
-                            field.index
-                          )?.root?.message
+                          form.formState.errors.availabilites?.at?.(field.index)
+                            ?.root?.message
                         }
                       </FormMessage>
                       <FormMessage>
                         {
-                          form.formState.errors.availabilites?.at?.(
-                            field.index
-                          )?.startTime?.message
+                          form.formState.errors.availabilites?.at?.(field.index)
+                            ?.startTime?.message
                         }
                       </FormMessage>
                       <FormMessage>
                         {
-                          form.formState.errors.availabilites?.at?.(
-                            field.index
-                          )?.endTime?.message
+                          form.formState.errors.availabilites?.at?.(field.index)
+                            ?.endTime?.message
                         }
                       </FormMessage>
                     </div>

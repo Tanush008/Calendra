@@ -44,7 +44,7 @@ export const scheduleEventSchema = z.object({
                 const overlap = availabilites.some((a, i) => {
                     return (
                         i !== index && a.dayOfWeek === availability.dayOfWeek &&
-                        timeToFloat(a.startTime) < timeToFloat(a.endTime) &&
+                        timeToFloat(a.startTime) < timeToFloat(availability.endTime) &&
                         timeToFloat(a.endTime) > timeToFloat(availability.startTime)
                     )
                 })

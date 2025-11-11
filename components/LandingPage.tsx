@@ -11,7 +11,7 @@ export default function LandingPage() {
       {/* Section with branding, heading, subheading, and illustration */}
       <section className="flex flex-col items-center">
         {/* App Logo */}
-        <Image src="/assets/logo.svg" width={300} height={300} alt="Logo" />
+        <Image src="/assest/logo.svg" width={300} height={300} alt="Logo" />
 
         {/* Main Heading */}
         <h1 className="text-2xl font-black lg:text-3xl">
@@ -25,7 +25,7 @@ export default function LandingPage() {
         </p>
 
         {/* Illustration below the text */}
-        <Image src="/assets/planning.svg" width={500} height={500} alt="Logo" />
+        <Image src="/assest/planning.svg" width={500} height={500} alt="Logo" />
       </section>
 
       {/* Clerk Sign-In Component with custom theme */}
