@@ -6,7 +6,7 @@ import { timeToFloat } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import z from "zod";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -41,7 +41,7 @@ export function ScheduleForm({
   schedule?: {
     timezone: string;
     availabilities: Availability[];
-  }
+  };
 }) {
   const form = useForm<z.infer<typeof scheduleEventSchema>>({
     resolver: zodResolver(scheduleEventSchema),

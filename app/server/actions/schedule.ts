@@ -8,7 +8,7 @@ import { addMinutes, areIntervalsOverlapping, isFriday, isMonday, isSaturday, is
 import { eq } from "drizzle-orm"
 import { BatchItem } from "drizzle-orm/batch"
 import { revalidatePath } from "next/cache"
-import z from "zod"
+import { z } from "zod"
 import { getCalenderEvents } from "../google/googleCalender"
 import { DAYS_OF_WEEK_IN_ORDER } from "@/constants"
 import { fromZonedTime } from "date-fns-tz"
@@ -51,7 +51,7 @@ export async function saveSchedule(unsafeData: z.infer<typeof scheduleEventSchem
                 set: scheduleData
             })
             .returning({ id: ScheduleTable.id })
-            
+
         const statement: [BatchItem<"pg">] = [
             db.delete(ScheduleAvailabilityTable)
                 .where(eq(ScheduleAvailabilityTable.scheduleId, scheduleId))

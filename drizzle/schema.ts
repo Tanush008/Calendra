@@ -1,9 +1,7 @@
 import { DAYS_OF_WEEK_IN_ORDER } from "@/constants";
-import { table } from "console";
 import { relations } from "drizzle-orm";
 // import { boolean, duration, index, integer, text, timestamp, uuid } from "drizzle-orm/gel-core";
 import { boolean, index, integer, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
-import { availableMemory } from "process";
 
 const createdAt = timestamp("createdAt").notNull().defaultNow()
 
