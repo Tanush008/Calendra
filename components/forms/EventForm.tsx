@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+ 
 import {
   Form,
   FormControl,
@@ -41,7 +41,7 @@ import { eventFormSchema } from "@/app/schema/events";
 // import { eventFormSchema } from "@/app/schema/Events";
 
 export default function EventForm({
-  event, 
+  event,
 }: {
   event?: {
     id: string;
@@ -151,7 +151,8 @@ export default function EventForm({
             <FormItem>
               <div className="flex items-center gap-2">
                 <FormControl>
-                  <Switch className="bg-green-500" 
+                  <Switch
+                    className="bg-green-500"
                     checked={field.value}
                     onCheckedChange={field.onChange}
                   />
