@@ -1,5 +1,4 @@
 "use client";
-
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,7 +37,6 @@ import {
   updateEvent,
 } from "@/app/server/actions/events";
 import { eventFormSchema } from "@/app/schema/events";
-// import { eventFormSchema } from "@/app/schema/Events";
 
 export default function EventForm({
   event,
