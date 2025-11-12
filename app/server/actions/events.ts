@@ -5,9 +5,9 @@ import { eventFormSchema } from "@/app/schema/events"
 import { db } from "@/drizzle/db"
 import { EventsTable } from "@/drizzle/schema"
 import { auth } from "@clerk/nextjs/server"
-import { and, asc, eq, sql } from "drizzle-orm"
+import { and, eq } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
-import z from "zod"
+import { z } from "zod"
 
 export async function createEvent(
 
