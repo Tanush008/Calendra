@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toZonedTime } from "date-fns-tz";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
-import z from "zod";
+import { z } from "zod";
 import Booking from "../Booking";
 import {
   Form,

@@ -1,6 +1,5 @@
-
 import { startOfDay } from "date-fns";
-import z from "zod";
+import { z } from "zod"
 const meetingSchemaBase = z.object({
     // 'startTime' must be a valid date and can't be in the past
     startTime: z.date().min(new Date()),
@@ -18,13 +17,10 @@ const meetingSchemaBase = z.object({
     timezone: z.string().min(1, "Required"),
 })
 
-export const meetingFormSchema = z
-    .object({
-        // 'date' must be a valid date and must be today or later
-        date: z.date().min(startOfDay(new Date()), "Must be in the future"),
-    })
-    // Combine it with the shared base schema fields
-    .merge(meetingSchemaBase)
+export const meetingFormSchema = z.object({
+    // 'date' must be a valid date and must be today or later
+    date: z.date().min(startOfDay(new Date()), "Must be in the future"),
+}).merge(meetingSchemaBase)
 
 // Schema for handling a meeting action, like saving it to the database
 export const meetingActionSchema = z
@@ -34,6 +30,4 @@ export const meetingActionSchema = z
 
         // 'clerkUserId' is required and must be a non-empty string
         clerkUserId: z.string().min(1, "Required"),
-    })
-    // Combine with the base schema to include time, guest info, and timezone
-    .merge(meetingSchemaBase)
+    }).merge(meetingSchemaBase)

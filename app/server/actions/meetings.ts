@@ -4,7 +4,8 @@ import { meetingActionSchema } from "@/app/schema/meeting";
 import { db } from "@/drizzle/db";
 import { fromZonedTime } from "date-fns-tz";
 import { getVaidTimeSch } from "./schedule";
-import z from "zod";
+import {z} from "zod";
+import { createCalendarEvent } from "../google/googleCalender";
 
 export async function createMeeting(unsafeData: z.infer<typeof meetingActionSchema>
 ) {
@@ -30,16 +31,16 @@ export async function createMeeting(unsafeData: z.infer<typeof meetingActionSche
             throw new Error("Event not found or inactive.");
         }
         const startTimeInZone = fromZonedTime(data.startTime, data.timezone);
-        const endTime = new Date(startTimeInZone.getTime() + event.durationInMinutes * 60000); // duration in minutes to milliseconds
+        // const endTime = new Date(startTimeInZone.getTime() + event.durationInMinutes * 60000); // duration in minutes to milliseconds
         const validTime = await getVaidTimeSch([startTimeInZone], event);
         if (validTime.length === 0) {
             throw new Error("Selected time is not available.");
         }
-        await createCalenderEvent(
+        await createCalendarEvent(
             {
                 ...data,
                 startTime: startTimeInZone,
-                durationinMinutes: event.durationInMinutes,
+                durationInMinutes: event.durationInMinutes,
                 eventName: event.name,
             }
         )
@@ -50,8 +51,4 @@ export async function createMeeting(unsafeData: z.infer<typeof meetingActionSche
         // Optionally throw the error to be handled further upstream
         throw new Error(`Failed to create meeting: ${error.message || error}`);
     }
-}
-
-function createCalenderEvent(arg0: { startTime: Date; durationinMinutes: number; eventName: string; eventId: string; clerkUserId: string; guestEmail: string; guestName: string; timezone: string; guestNotes?: string | undefined; }) {
-    throw new Error("Function not implemented.");
 }
