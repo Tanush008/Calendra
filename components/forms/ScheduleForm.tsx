@@ -56,7 +56,7 @@ export function ScheduleForm({
 
   const {
     append: addAvailability,
-    remove: removeAvaibility,
+    remove: removeAvailability,
     fields: availabilityFields,
   } = useFieldArray({ name: "availabilites", control: form.control });
 
@@ -195,7 +195,7 @@ export function ScheduleForm({
                           type="button"
                           className="size-6 p-1 cursor-pointer hover:bg-red-900"
                           variant="destructive"
-                          onClick={() => removeAvaibility(field.index)}
+                          onClick={() => removeAvailability(field.index)}
                         >
                           <X />
                         </Button>
